@@ -1,15 +1,15 @@
 package com.madoka.fragements;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.fragment.app.FragmentTransaction;
 import android.app.Activity;//allows you to specif rrsorces for different screen sizes
 import android.app.Fragment;
-import android.app.FragmentTransaction;
+//import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-public class MainActivity extends Activity implements WorkoutListFragment.WorkoutListListener{ //Implement the listener defined in WorkoutListFragment.
+public class MainActivity extends AppCompatActivity implements WorkoutListFragment.WorkoutListListener{ //Implement the listener defined in WorkoutListFragment.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements WorkoutListFragment.Workou
         View fragmentContainer = findViewById(R.id.fragment_container);
         if (fragmentContainer != null) {
         WorkoutDetailFragment details = new WorkoutDetailFragment(); //Start the fragment transaction.
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         details.setWorkout(id); //we only need to run this code if the frame layout is there
         ft.replace(R.id.fragment_container,details);
         ft.addToBackStack(null);
